@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% block content %}
+<main style="padding-top: -80px" class="container mt-3 mb-5">
+	<!-- featured news -->
+	<div  class="row my-3">
+		<!-- Left -->
+		<div class="col-md-12">
+			<h3>Songy Zhanalyqtardan...</h3>
+			<div class="card mb-3" style="height: 50%">
+			  <img src="/media/{{first_news.image}}"  class="card-img-top" alt="{{first_news.title}}">
+			  <div class="card-body">
+			    <h5 class="card-title">{{first_news.title}}</h5>
+			    <hr/>
+			    <p class="card-text"><a href="/detail/{{first_news.id}}" class="btn btn-sm btn-dark">Tolyqtai Oqu</a></p>
+			  </div>
+			</div>
+		</div>
+		<!-- Right -->
+<!--		<div class="col-md-5" style="max-height: 510px; overflow: auto;">-->
+<!--			{% for news in three_news %}-->
+<!--			&lt;!&ndash; News Box &ndash;&gt;-->
+<!--			<div class="card">-->
+<!--			  <div class="row no-gutters">-->
+<!--			    <div class="col-md-4">-->
+<!--					<img src="media/{{news.image}}" class="card-img-top" alt="{{news.title}}">-->
+<!--			    </div>-->
+<!--			    <div class="col-md-8">-->
+<!--			      <div class="card-body">-->
+<!--			        <p class="card-title">{{news.title|truncatewords:5}}</p>-->
+<!--			        <p class="card-text"><a href="/detail/{{news.id}}" class="btn btn-sm btn-dark">Tolyqtai Oqu</a></p>-->
+<!--			      </div>-->
+<!--			    </div>-->
+<!--			  </div>-->
+<!--			</div>-->
+<!--			<hr/>-->
+<!--			{% endfor %}-->
+<!--		</div>-->
+	</div>
+	<br>
+	<br>
+	<!-- Category Wise News -->
+	{% for category in three_categories %}
+	<h3 class="border-bottom pb-1">{{category.title}} <a href="/category/{{category.id}}" class="float-right btn btn-sm btn-dark	 ">Dal osy categoriyadan</a></h3>
+	<br>
+	<div class="row my-4">
+		{% for news in category.news_set.all %}
+			{% if forloop.counter < 4 %}
+			<!-- News box -->
+			<div class="col-lg-4">
+				<div class="card mb-3 shadow">
+				<img src="/media/{{news.image}}" class="card-img-top" alt="{{news.title}}">
+				<div class="card-body">
+					<h5 class="card-title">{{news.title}}</h5>
+					<br>
+					<hr/>
+					<p class="card-text" ><a href="/detail/{{news.id}}" class="btn btn-sm btn-dark">Tolyqtai Oqu</a></p>
+				</div>
+				</div>
+			</div>
+
+			{% endif %}
+		{% endfor %}
+	</div>
+	{% endfor %}
+	<!-- End Single Category -->
+</main>
+{% endblock %}
